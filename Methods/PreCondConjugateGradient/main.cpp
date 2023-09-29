@@ -6,36 +6,35 @@ using Eigen::VectorXf;
 using std::cout;
 using std::endl;
 
-// TODO: Explicit implementation of a preconditioned conjugate gradient method (probably suboptimal)
-VectorXf conjugateGradient(MatrixXf& A, VectorXf& b, VectorXf& x0, float& tol, int& maxIter)
+
+// Explicit implementation of a preconditioned conjugate gradient method (probably suboptimal)
+VectorXf precondConjGrad(const MatrixXf& Minv, const MatrixXf& A, const VectorXf& b, const VectorXf& x0, const float& tol, const u_int& maxIter)
 {
-    VectorXf r = b - A * x0;
-    if (r.norm() < tol)
-    {
-        return x0;
-    }
-    VectorXf p = r;
+    const float err = 1e-14 * b.norm();
+
     VectorXf x = x0;
-    VectorXf w = A * p;
-    int      k = 0;
-    float    alpha, beta, res;
-    while (k < maxIter)
+    VectorXf r = b - A * x;
+    VectorXf z = Minv * r;
+    VectorXf p = z;
+
+    float alpha = 1;
+    VectorXf ri = r;
+    VectorXf zi = z;
+    uint32_t j = 0;
+    while (r.norm() > err && j < maxIter)
     {
-        alpha = r.dot(r) / p.dot(w);
-        x     = x + alpha * p;
-        r     = r - alpha * w;
-        res   = r.norm();
-        if (res < tol)
-        {
-            break;
-        }
-        beta = r.dot(r) / p.dot(p);
-        p    = r + beta * p;
-        w    = A * p;
-        k++;
+        alpha = ri.dot(zi) / (p.dot(A * p));
+        x += alpha * p;
+        r -= alpha * A * p;
+        z = Minv * r;
+        p = z + (r.dot(z) / ri.dot(zi)) * p;
+        j++;
+        ri = r;
+        zi = z;
     }
     return x;
 }
+
 
 int main()  // int argc, char* argv[])
 {
@@ -48,10 +47,15 @@ int main()  // int argc, char* argv[])
     VectorXf x0(b.size()); 
     x0.setZero();
 
-    float tol     = 1e-2;
-    int   maxIter = 1000;
+    MatrixXf Minv(3,3); // trivial preconditioner
+    Minv << 1, 0, 0,
+            0, 1, 0,
+            0, 0, 1;
 
-    VectorXf x = conjugateGradient(A, b, x0, tol, maxIter);
+    float tol = 1e-14 * b.norm();
+    u_int maxIter = 10000;
+
+    VectorXf x = precondConjGrad(Minv, A, b, x0, tol, maxIter);
     cout << "This is the initial vector x0 : " << endl;
     cout << x0 << endl;
     cout << "This is the found solution vector x : " << endl;
