@@ -6,7 +6,14 @@ using Eigen::VectorXf;
 using std::cout;
 using std::endl;
 
-// Explicit implementation of the conjugate gradient method (probably suboptimal)
+
+/// @brief Computes the solution of the linear system Ax = b using the conjugate gradient method. The matrix A is expected to be symmetric and positive definite (SPD).
+/// @param A is the matrix of the linear system.
+/// @param b is the right hand side of the linear system.
+/// @param x0 is the initial guess of the solution.
+/// @param tol is the error tolerance of the method.
+/// @param maxIter is the maximum number of iterations.
+/// @return Estimation of the solution x.
 VectorXf conjugateGradient(MatrixXf& A, VectorXf& b, VectorXf& x0, float& tol, int& maxIter)
 {
     VectorXf r = b - A * x0;
@@ -37,7 +44,7 @@ VectorXf conjugateGradient(MatrixXf& A, VectorXf& b, VectorXf& x0, float& tol, i
     return x;
 }
 
-int main()  // int argc, char* argv[])
+int main()
 {
     MatrixXf A(3, 3); 
     A << 1, 0, 0,
