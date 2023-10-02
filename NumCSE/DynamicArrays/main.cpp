@@ -6,6 +6,7 @@ using std::cout;
 using std::endl;
 
 
+/// @brief This struct represents a vector of doubles that can be dynamically resized and modified. The pushback function is implemented with O(1) complexity.
 struct vec{
     size_t capacity; // max number of elements that can be stored
     size_t size; // number of elements currently stored
