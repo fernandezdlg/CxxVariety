@@ -1,10 +1,10 @@
-CXX = g++
+CXX = clang++
 CXXFLAGS = -std=c++20 -O2 
 # -Wall -Wextra -Wpedantic
 EXTRA =
 LIBS = -L/opt/homebrew/lib
 INCLUDE = -I/opt/homebrew/include/eigen3/
-targets = simple matMult cg least_squares
+targets = simple matMult cg least_squares choleskyQR
 
 all: $(targets)
 
