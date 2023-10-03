@@ -36,6 +36,8 @@ void choleskyQR(const MatrixXd &A, MatrixXd &Q, MatrixXd &R) {
 void hhQR(const MatrixXd &A, MatrixXd &Q, MatrixXd &R) {
     Q = A.householderQr().householderQ();
     R = A.householderQr().matrixQR().triangularView<Eigen::Upper>();
+    // one could also do:??
+    // R = MatrixXd::Identity(std::min(A.rows(), A.cols()), A.rows()) * A.householderQr().matrixQR().triangularView<Eigen::Upper>();
 }
 
 
