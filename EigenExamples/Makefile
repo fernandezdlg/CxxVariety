@@ -4,7 +4,7 @@ CXXFLAGS = -std=c++20 -O2
 EXTRA =
 LIBS = -L/opt/homebrew/lib
 INCLUDE = -I/opt/homebrew/include/eigen3/
-targets = simple matMult cg
+targets = simple matMult cg least_squares
 
 all: $(targets)
 
