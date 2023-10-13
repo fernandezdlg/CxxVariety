@@ -1,10 +1,10 @@
 CXX = g++
-CXXFLAGS = -std=c++20 -O2 
+CXXFLAGS = -std=c++20 -O3
 # -Wall -Wextra -Wpedantic
 EXTRA =
 LIBS = -L/opt/homebrew/lib
 INCLUDE = -I/opt/homebrew/include
-targets = main
+targets = sparse_vector sparse_methods
 
 all: $(targets)
 
