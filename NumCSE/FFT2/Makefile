@@ -1,10 +1,9 @@
-CXX = g++
-CXXFLAGS = -std=c++20 -O2 
-# -Wall -Wextra -Wpedantic
+CXX = clang++
+CXXFLAGS = -std=c++20 -stdlib=libc++ -O2 -Wextra -Wpedantic
+
 EXTRA =
-LIBS = -L/opt/homebrew/lib
-# INCLUDE = -I/opt/homebrew/include
-INCLUDE = -I/opt/homebrew/include/eigen3/
+LIBS = -L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++
+INCLUDE = -I/opt/homebrew/include/eigen3 -I.
 targets = main
 
 all: $(targets)
