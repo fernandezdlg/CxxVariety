@@ -10,3 +10,5 @@
 
 # Ignore .vscode dir
 .vscode
+# Ignore DockerTests dir
+DockerTests
