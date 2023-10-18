@@ -8,8 +8,8 @@
 !Makefile
 ### Above combination will ignore all files without extension ###
 
-# Ignore .vscode dir
+# Ignore other files and dirs
 .vscode
-# Ignore DockerTests dir
+.DS_Store
 DockerTests
 .devcontainer
