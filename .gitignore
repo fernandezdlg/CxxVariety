@@ -12,3 +12,4 @@
 .vscode
 # Ignore DockerTests dir
 DockerTests
+.devcontainer
