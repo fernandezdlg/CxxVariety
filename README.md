@@ -32,7 +32,6 @@ You will find a `Dockerfile` in this repository which can be used to build an im
 
 * `build-essential`
 * `cmake`
-* `git`
 * `libeigen3-dev`
 * LLVM v17 compilers
 <!-- * libopenmpi-dev
