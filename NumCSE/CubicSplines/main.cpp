@@ -1,5 +1,5 @@
 #include <iostream>
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 #include <mgl2/mgl.h>
 
 using namespace Eigen;
