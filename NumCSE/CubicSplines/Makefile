@@ -1,9 +1,10 @@
 CXX = clang++
-CXXFLAGS = -std=c++20 -stdlib=libc++ -O2 -Wextra -Wpedantic
+CXXFLAGS = -std=c++20 -O2 -Wextra -Wpedantic
 
 EXTRA =
-LIBS = -L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++
-INCLUDE = -I/opt/homebrew/include/eigen3 -I.
+LIBS = -L/opt/local/lib -lmgl
+INCLUDE = -I.
+INCLUDE+= -I/opt/local/include
 targets = main
 
 all: $(targets)
