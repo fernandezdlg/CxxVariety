@@ -84,5 +84,6 @@ int main() {
 	gr.SetRanges(0, 3, -3, 3);
 	gr.Plot(datx, daty, "0");
 	gr.WriteFrame("spline.eps");
+	return 0;
 }
 	
