@@ -67,15 +67,14 @@ int main() {
     // Simple example:
     // T << 0, 1, 2, 3, 4, 5, 6, 7, 8;
     // Y << 0, 1, 0, 1, 0, 1, 0, 1, 0;
-
+	
+	// Another example:
 	T << 0, 0.4802, 0.7634, 1, 1.232, 1.407, 1.585, 1.879, 2;
 	Y << 0., 0.338, 0.7456, 0, -1.234, 0 , 1.62, -2.123, 0;
 
-	int len = 1 << 9;
+	int len = 1 << 9; // number of points to plot
 	VectorXd evalT = VectorXd::LinSpaced(len, T(0), T(T.size()-1));
-
 	VectorXd evalY = evalCubicSpline(cubicSpline(T, Y), T, evalT);
-
 
     // Plotting
  	mglData datx, daty;
