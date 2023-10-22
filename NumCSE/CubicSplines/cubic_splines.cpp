@@ -42,19 +42,19 @@ MatrixXd cubicSpline(const VectorXd &T, const VectorXd &Y) {
 }
 
 /// @brief Evaluates the cubic spline S in the points evalT. Assumes T is sorted with no repetitions
-/// @param S is the (4, n) spline coefficients matrix
+/// @param abcd is the (4, n) spline coefficients matrix
 /// @param T is the vector of abscissae
 /// @param evalT is the vector of points where to evaluate the spline
 /// @return the vector evalY, where evalY(i) is the value of the spline in evalT(i)
-VectorXd evalCubicSpline(const MatrixXd &S, const VectorXd &T, const VectorXd &evalT) {
+VectorXd evalCubicSpline(const MatrixXd &abcd, const VectorXd &T, const VectorXd &evalT) {
 	int n = evalT.size();
 	VectorXd evalY(n);
 
     size_t j = 0;
     for (int i=0; i<n; i++){
         while (evalT(i) > T(j+1)) j++;
-        double x = evalT(i) - T(j);
-        evalY(i) = S(0,j) + x*(S(1,j) + x*(S(2,j) + x*S(3,j)));
+        double dt = evalT(i) - T(j);
+        evalY(i) = abcd(0,j) + dt*(abcd(1,j) + dt*(abcd(2,j) + dt*abcd(3,j)));
     }
 
 	return evalY;

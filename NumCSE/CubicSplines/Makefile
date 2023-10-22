@@ -8,7 +8,7 @@ EXTRA =
 LIBS = -L/opt/local/lib -lmgl
 INCLUDE = -I.
 INCLUDE+= -I/opt/homebrew/include/eigen3 -I/opt/local/include
-targets = main
+targets = cubic_splines
 
 all: $(targets)
 
